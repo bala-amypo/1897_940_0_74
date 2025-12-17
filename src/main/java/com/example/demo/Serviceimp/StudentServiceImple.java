@@ -7,8 +7,13 @@ public class StudentServiceImple implements Student{
     public Student saveStudent(Student student)
     {
         private final (StudentRepository studentrepository){
-            this.
+            this.StudentRepository=studentrepository;
         }
     }
+    @Autowired
+    StudentRepository studentrepository;
 
+    public Student saveStudent(Student student){
+        return studentrepository.save(student);
+    }
 }
