@@ -1,3 +1,6 @@
 package com.example.demo.repository
-
-public interface Student repository extends JpaRepository<>
+import org.springframework.data.jpa.Respiratory;
+import com.example.demo.entity.Student;
+public interface Student repository extends JpaRepository<Student,Long>{
+    
+}
