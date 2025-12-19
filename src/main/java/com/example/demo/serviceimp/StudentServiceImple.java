@@ -9,7 +9,7 @@ import com.example.demo.service.StudentService;
 import com.example.demo.exception.ResourceNotFoundHandler;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImple implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
