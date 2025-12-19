@@ -1,4 +1,4 @@
-package com.example.demo.serviceimp;
+package com.example.demo.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
+import com.example.demo.exception.ResourceNotFoundHandler;
 
 @Service
-public class StudentServiceImple implements StudentService {
+public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
@@ -16,4 +17,22 @@ public class StudentServiceImple implements StudentService {
         return studentRepository.save(student);
     }
     
+    public Student getStudentById(Long id){
+        return studentRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundHandler("Student not found"));
+    }
+    public Student updatedata(Long id,Student student){
+        Student exists=getStudentById(id);
+        exists.setName(student.getName());
+        exists.setEmail(student.getEmail());
+        return studentRepository.save(exists);
+        // .orElseThrow(()-> new ResourceNotFoundHandler("Student not found"));
+    }
+
+    public Student deletdata(Long id){
+        Student student=getStudentById(id);
+        studentRepository.delete(student);
+        return student;
+    }
+
 }
